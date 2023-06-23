@@ -32,46 +32,6 @@ var swiper = new Swiper(".home-slider", {
    keyboard: true,
  });
  
-//  var swiper = new Swiper(".home-slider", {
-//    spaceBetween: 30,
-//    centeredSlides: true,
-//    autoplay: {
-//      delay: 2500,
-//      disableOnInteraction: false,
-//    },
-//    pagination: {
-//      el: ".swiper-pagination",
-//      clickable: true,
-//    },
-//    navigation: {
-//      nextEl: ".swiper-button-next",
-//      prevEl: ".swiper-button-prev",
-//    },
-//    mousewheel: true,
-//    keyboard: true,
-//    loop:true,
-//    cssMode: true,
-//  });
-
-
-// $(function(){
-//   var lastScrollTop = 0, delta = 15;
-//   $(window).scroll(function(event){
-//      var st = $(this).scrollTop();
-     
-//      if(Math.abs(lastScrollTop - st) <= delta)
-//         return;
-// if ((st > lastScrollTop) && (lastScrollTop>0)) {
-//      // downscroll code
-//     $("header").css("top","-80px");
-
-//  } else {
-//     // upscroll code
-//     $("header").css("top","0px");
-//  }
-//      lastScrollTop = st;
-//   });
-// });
 
 // const hiddenElements = document.querySelectorAll('.box');
 // hiddenElements.forEach((el)=>observer.observe(el));
@@ -79,13 +39,13 @@ var swiper = new Swiper(".home-slider", {
 let loadMoreBtn = document.querySelector('.packages .load-more .btn');
 let currentItem = 3;
 
-loadMoreBtn.onclick = () => {
+loadMoreBtn.onclick = () =>{
    let boxes = [...document.querySelectorAll('.packages .box-container .box')];
-   for (var i = currentItem; i < currentItem + 3; i++) {
+   for (var i = currentItem; i < currentItem + 3; i++){
       boxes[i].style.display = 'inline-block';
    };
    currentItem += 3;
-   if (currentItem >= boxes.length) {
+   if(currentItem >= boxes.length){
       loadMoreBtn.style.display = 'none';
    }
 }
@@ -94,3 +54,4 @@ loadMoreBtn.onclick = () => {
 //  https://pixabay.com/illustrations/retro-background-the-consignment-4237850/
 //  https://pixabay.com/illustrations/fractals-environment-chess-1728594/
 //  https://pixabay.com/photos/
+
