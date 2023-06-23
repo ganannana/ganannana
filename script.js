@@ -73,8 +73,8 @@ var swiper = new Swiper(".home-slider", {
 //   });
 // });
 
-const hiddenElements = document.querySelectorAll('.box');
-hiddenElements.forEach((el)=>observer.observe(el));
+// const hiddenElements = document.querySelectorAll('.box');
+// hiddenElements.forEach((el)=>observer.observe(el));
 
 let loadMoreBtn = document.querySelector('.packages .load-more .btn');
 let currentItem = 3;
