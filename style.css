@@ -1194,3 +1194,21 @@ body {
   padding-top: 15px;
   font-size: 16px;
 }
+
+.home-packages {
+  background: var(--light-bg);
+  padding-top: 15px;
+}
+.home-packages .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 2rem;
+}
+.packages .load-more {
+  text-align: center;
+  margin-top: 2rem;
+}
+.home-packages .load-more {
+  text-align: center;
+  margin-top: 2rem;
+}
