@@ -1,170 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>home</title>
-    <link rel="stylesheet" href="style.css" />
-    <!-- swiper css link  -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
     <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
-    />
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+    <style>
+        *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-    <!-- font awesome cdn link  -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-  </head>
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-  <body>
-    <!-- header section starts  -->
+.cards {
+  display: grid;
+  grid-template-columns:repeat(auto-fit,minmax(500px,1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-    <section class="header">
-      <a class="item1"><img src="images/logo3.1.png" alt=""></a>
-         <nav class="navbar" id="navbar">
-             <a href="home.html">Нүүр</a>
-             <a href="about.html">Бидний тухай</a>
-             <a href="#hutulbur">Хөтөлбөр</a>
-             <a href="#home-about">Онцлох мэдээ</a>
-             <a href="about.html#gallerys">Gallery</a>
-         </nav>
+.cards_item {
+  display: flex;
+  padding: 1rem;
+}
 
-         <div id="menu-btn" class="fas fa-bars"></div>
-     </section>
+.card_image {
+  height: calc(13*1.2rem);
+  padding: 1.2rem 1.2rem 0;
+  position:relative;
+}
+.card_image:before,
+.card_image:after{
+  content: "";
+  position: absolute;
+  width: 20px;
+  left: 60%;
+  top: 0;
+  height: 45px;
+  /* background: #e6e6e6b8;
+  transform: rotate(45deg); */
+}
+.card_image:after{
+  transform: rotate(-45deg);
+  top:auto;
+  bottom:-22px;
+  left:40%;
+}
+.card_image img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
-    <!-- header section ends -->
+.cards_item {
+  filter:drop-shadow(0 0 5px rgba(0, 0, 0, 0.25));
+}
+.tailbar {
+  background-color: #f8f8f8; /* Set your desired background color */
+  padding: 20px; /* Set your desired padding */
+  margin-top: 20px; /* Set your desired margin-top */
+  border-radius: 8px; /* Set your desired border radius */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Set your desired box shadow */
 
-    <!-- home packages section starts  -->
+  /* Text styling */
+  color: #333; /* Set your desired text color */
+  font-size: 16px; /* Set your desired font size */
+  line-height: 1.5; /* Set your desired line height */
 
-    <section class="home-packages">
-      <div class="garchig">
-        <h1>Бэсрэг наадам</h1>
-      </div>
-      <div class="box-container">
-        <div class="zurag">
-          <img
-            src="images/besreg.jpg"
-            alt=""
-            style="float: left; margin: auto; height: auto; width: 100%"
-          />
-        </div>
-        <div class="tailbar">
-          <div class="title1">
-            <p>Албан байгуулага хамт олны бэсрэг наадам</p>
+  /* Additional styling properties */
+  /* Add any additional styling properties as needed */
+
+  /* Example: Text alignment */
+  text-align: justify; /* Set your desired text alignment */
+}
+.tailbar2 {
+  background-color: #f8f8f8; /* Set your desired background color */
+  padding: 20px; /* Set your desired padding */
+  margin-top: 10px; /* Set your desired margin-top */
+  border-radius: 8px; /* Set your desired border radius */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Set your desired box shadow */
+
+  /* Text styling */
+  color: #333; /* Set your desired text color */
+  font-size: 16px; /* Set your desired font size */
+  line-height: 1.5; /* Set your desired line height */
+
+  /* Additional styling properties */
+  /* Add any additional styling properties as needed */
+
+  /* Example: Text alignment */
+  text-align: justify; /* Set your desired text alignment */
+  
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* padding-left: 30px; */
+  /* background: repeating-linear-gradient(#0000 0 calc(1.2rem - 1px),#66afe1 0 1.2rem) right bottom /100% 100%,linear-gradient(red 0 0) 30px 0/2px 100% #fff; */
+  background-repeat: no-repeat;
+  line-height: 1.2rem;
+  /* -webkit-mask:radial-gradient(circle .8rem at 2px 50%,#0000 98%,#000)0 0/100% 2.4rem; */
+}
+
+.card_content {
+  padding: 1.2rem;
+}
+
+h2.card_title,p {
+  margin: 1.2rem 0;
+}
+h2.card_title {
+    font-size: 1.3em;
+}
+body {
+  font-family: wfont_59b760_9e277609a66d48e885abef24bfec5cfb,wf_9e277609a66d48e885abef24b,orig_manrope_medium;
+
+  background:#eee;
+}
+
+html {
+  font-size:15px;
+}
+.load-more {
+    text-align: center;
+    margin-top: 20px; /* Adjust the margin-top value as needed */
+}
+
+.card_price {
+  position: absolute;
+  bottom: 8px;
+  right: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80x;
+  height: 30px;
+  border-radius: 0.25rem;
+  /* background-color: #f8f8f8; */
+  font-size: 18px;
+  font-weight: 700;
+
+  
+}
+
+.card_price span {
+  font-size: 12px;
+  margin-top: -2px;
+}
+    </style>
+</head>
+<body>
+
+    
+<div class="main">
+    <ul class="cards">
+      <li class="cards_item">
+        <div class="card">
+          <div class="card_image"><img src="images/besreg3.jpg" alt="mixed vegetable salad in a mason jar. "><span class="card_price"><span></span>Зун</span></div>
+          <div class="card_content">
+            <h2 class="card_title">Бэсрэг наадмын хөтөлбөр 1</h2>
+            <div class="card_text">
+              <div class="tailbar">
+                <!-- <div class="title1">
+                  <p>Жуулчинд морь унуулах</p>
+                </div> -->
+                <!-- <div class="zorilgo">
+                  <p>
+                    Үндэсний уламжлал болох НУМ СУМ, ШАГАЙН НААДГАЙ, МОРЬ УНАХ соёлд
+                    шууд суралцах төдийгүй ЦЭВЭР АГААРТ нэг өдрийг үр дүнтэй өнгөрөөх.
+                  </p>
+                </div> -->
+      
+                <b>Хөтөлбөр:</b>
+                <ol>
+                  <li>9:00 - Хотоос хөдлөх </li>
+                  <li>
+                    10:30 - Нээлт. Хөтлөгч хөтлөн явуулна. Байгуулагын дарга нээж үг хэлнэ.Урлагийн номер, өглөөний цай
+                   </li>
+                  <li>11:00 - Өдрийн зоог /Хуушуур/</li>
+                  <li>11:20 - Хүчит бөхийн барилдааны 1,2-н даваа  
+                    /Байгуулагаас 64 болон 32  бөх оролцоно/
+                 </li>
+                  <li>14:00 - Их зоог /Хорхог/<li>
+                  <li>15:00 - Өдрийн хоол хорхог </li>
+                  <li>15:00 - Монголын үндэсний сурын сарампай харваа
+                    /Баг бүрээс 2,2 эмэгтэй, эрэгтэй оролцоно/
+                 </li>
+                  <li>
+                    16:00 - Айрагны тэмцээн, шагай шүүрэх тэмцээн 
+                  </li>
+                  <li>16:30 - Дээлтэй монгол</li>
+                  <li>	17:30 - Хурдан морины уралдаан </li>
+                  <li>18:30 - Шөвгийн 4н  бөхийн барилдаан</li>
+                  <li>19:00 - Шагнал гардуулах, наадмын хаалт</li>
+                  <br>
+                  <br>
+                </ol>
+              </div>
+                <div class="tailbar2 " id="tailbar2id">
+                <p><b>ҮНЭ:</b>100.000 төгрөг  </p>
+              
+              
+                
+                <p><b>ХАРИЛЦАХ УТАС:</b> 88110542, 85989200</p>
+               
+                <div class="load-more">
+                  <a href="tel:88110542"> </i>Захиалах</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="zorilgo">
-            <p>Албан байгуулага хамт олны бэсрэг наадам зохион байгуулна</p>
+        </div>
+      </li>
+  
+   
+      <li class="cards_item">
+        <div class="card">
+          <div class="card_image"><img src="images/besreg3.jpg" alt="mixed vegetable salad in a mason jar. "><span class="card_price"><span></span>Зун</span></div>
+          <div class="card_content">
+            <h2 class="card_title">Бэсрэг наадмын хөтөлбөр 2</h2>
+            <div class="card_text">
+              <div class="tailbar">
+                <!-- <div class="title1">
+                  <p>Жуулчинд морь унуулах</p>
+                </div> -->
+                <!-- <div class="zorilgo">
+                  <p>
+                    Үндэсний уламжлал болох НУМ СУМ, ШАГАЙН НААДГАЙ, МОРЬ УНАХ соёлд
+                    шууд суралцах төдийгүй ЦЭВЭР АГААРТ нэг өдрийг үр дүнтэй өнгөрөөх.
+                  </p>
+                </div> -->
+      
+                <b>Хөтөлбөр:</b>
+                <ol>
+                  <li>12:00  -  Хотоос хөдлөх </li>
+                  <li>
+                    13:30 - Нээлт. Хөтлөгч хөтлөн явуулна. Байгуулагын дарга нээж үг хэлнэ.Урлагийн номер, өглөөний цай
+                   </li>
+                  <li>14:00 - Өдрийн зоог /Хуушуур/</li>
+                  <li>14:20 - Хүчит бөхийн барилдааны 1,2-н даваа  
+                    /Байгуулагаас 64 болон 32  бөх оролцоно/
+                 </li>
+                  <li>17:00 - Их зоог /Хорхог/<li>
+                  <li>17:30 - Өдрийн хоол хорхог </li>
+                  <li>15:00 - Монголын үндэсний сурын сарампай харваа
+                    /Баг бүрээс 2,2 эмэгтэй, эрэгтэй оролцоно/
+                 </li>
+                  <li>
+                    18:00 - Айрагны тэмцээн, шагай шүүрэх тэмцээн 
+                  </li>
+                  <li>18:30 - Дээлтэй монгол</li>
+                  <li>	19:30 - Хурдан морины уралдаан </li>
+                  <li>20:30 - Шөвгийн 4н  бөхийн барилдаан</li>
+                  <li>21:00 - Шагнал гардуулах, наадмын хаалт</li>
+                  <li>21:10 - 23.10 - Оройн арга хэмжээ /Бий биелгээ, амьд хөгжмийн тоглолт, циркийн үзүүлбрүүд,  чөлөөт бүжиг/</li>
+                  
+                </ol>
+              </div>
+              <div class="tailbar2">
+                
+                <p><b>ҮНЭ:</b>150.000 төгрөг  </p>
+
+                <p><b>ХАРИЛЦАХ УТАС:</b> 88110542, 85989200</p>
+                
+               
+                <div class="load-more">
+                  <a href="tel:88110542"> </i>Захиалах</a>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </li>
 
-          <b>Өдөрлөгийн хөтөлбөр:</b>
-          <ul>
-            <li>Мэргэжлийн хөтлөгч , дуучин , үзүүлбэрийн баг ажиллана.</li>
-            <li>хөгжим техникийн баг ажиллана.</li>
-            <li>хүчит бөх зохион байгуулах баг</li>
-            <li>хурдан морь зохион байгуулах баг</li>
-            <li>бусад уралдаан тэмцээн зохион байгуулах баг</li>
-            <li>арын алба , гал тогооны баг ажиллана.</li>
-          </ul>
-          <b>Эрийн гурван наадам:</b>
-          <ul>
-            <li>
-              Хүчит бөхийн барилдаан /хөлийн цэц, гарын даа, тайлбарыг Хөх
-              морьтоос/
-            </li>
-            <li>
-              Хурдан морины уралдаан /уралдах морьд , урд манлайлагчийн морь,
-              ард хамгаалалтын морь Хөх морьтоос дагана!/
-            </li>
-            <li>
-              Нум сум харваа / эрэгтэй , эмэгтэй тусдаа явагдана, заавар зөвлөмж
-              өгнө/
-            </li>
-            <li>
-              Шагай хаяж азаа үзэх тэмцээн/ 4 морь буулгасан хүнд супер шагнал/
-            </li>
-
-            <li>Дэмбээ</li>
-          </ul>
-          <p>
-            Шөвгийн 4 бөх, Айргийн 5 морь, нум сумны эхны 3 байранд Хөх морьтын
-            зүгээс бэсрэг наадмын медальтай.
-          </p>
-          <p>
-            Өдөр 11:00-12:00 цагийн үед хуушуур , 16:00 цагт Хорхогоор гарна.
-          </p>
-          <ul>
-            <li>Асар майхан</li>
-            <li>ширээ сандал</li>
-            <li>аяга таваг, айрагны хул Хөх морьтоос гарна!</li>
-          </ul>
-          <p>
-            Бусад нарийн зүйлсийг зохион байгуулагчтай ярилцан зөвшилцөж танд
-            таатай нөхцөлөөр зохион байгуулъя
-          </p>
-          <p><b>ХААНА:</b> Цонжинболдогт ХӨХ МОРЬТ адуу морь уналгын төвд</p>
-          <p><b>ХАРИЛЦАХ УТАС:</b> 88110542</p>
-          <div class="load-more">
-            <a href="tel:88110542"> <i class="fas fa-phone"></i>Захиалах</a>
+      <!-- <li class="cards_item">
+        <div class="card">
+          <div class="card_image"><img src="images/naadam2.jpg" alt="mixed vegetable salad in a mason jar. "><span class="card_price"><span></span>Зун</span></div>
+          <div class="card_content">
+            <h2 class="card_title">Жуулчдад зориулсан “ЭРИЙН ГУРВАН НААДАМ” наадам </h2>
+            <div class="card_text">
+              <div class="tailbar">
+                <!-- <div class="title1">
+                  <p>Жуулчинд морь унуулах</p>
+                </div> -->
+                <!-- <div class="zorilgo">
+                  <p>
+                    Үндэсний уламжлал болох НУМ СУМ, ШАГАЙН НААДГАЙ, МОРЬ УНАХ соёлд
+                    шууд суралцах төдийгүй ЦЭВЭР АГААРТ нэг өдрийг үр дүнтэй өнгөрөөх.
+                  </p>
+                </div> -->
+      
+                <!-- <b>Хөтөлбөр:</b>
+                <ol>
+                  <li>Наадмын нээлт /Уртын дуу, морин хуур/ </li>
+                  <li>
+                    Монгол циркийн гайхамшигаас /Уран нугаралт, цагирагтай үзүүлбэр/
+                  </li>
+                  <li>Морьт үзүүлбэр /Морин дээрээс ташуур,уурга шүүрэх,нум сум харвах,эмнэг унах (булгиулах)/</li>
+                  <li>Хүчит бөхийн барилдаан 1-н даваа </li>
+                  <li>Үндэсний шагайн харваа</li>
+                  <li>Үндэсний сурын /сарампай/ харваа </li>
+                  <li>Айрагны соёл /Хуруудах, дэмбээдэх, аравдах бусад тэмцээн/</li>
+    
+                  <li>
+                    Хүчит бөхийн 2,3-н даваа
+                  </li>
+                  <li>Хурдан морины  уралдаан </li>
+                  <li>	Хүчит бөхийн түрүү үзүүрийн барилдаан</li>
+                  <li>Бэсрэг наадмын хаалт</li>
+                  <b>Давуу талууд:</b>
+                  <ol>
+                    <li>
+                      Жуулчиддаа гэр захиалах боломжтой.
+                    </li>
+                    <li>
+                      Жуулчид барилдах, нум сум харвах наадамд үнэ төлбөргүй оролцох боломжтой.
+                    </li>
+                    <li>
+                      Нум сум харвах нь хүүхдийн тэсвэр тэвчээрийг нэмээд
+                      зогсохгүй,сурах эрмэлзэлийг маш ихээр төрүүлдэг
+                    </li>
+                    <li>
+                      Жуулчин  хурдан морины  уралдааныг /тусгай  машинаар/ дагах боломжтой./Төлбөртэй/
+                    </li>
+                    <li>Эрээн асарт сууна. /Сүүтэй цай, өрөм, боорцог,хуушуур, хорхогоор дайлна/</li>
+                  </ol>
+                </ol>
+            
+                <p><b>Хугацаа:</b>Нийт 4 цагийн арга хэмжээ болно</p>
+                <p><b>ҮНЭ:</b>150.000 төгрөг /Хөтөч жолооч нарт хоол үнэгүй/ </p>
+                <p><b>ХААНА: Цонжинболдогт ХӨХ МОРЬТ</b> адуу морь уналгын төвд</p>
+                
+                <p><b>ХАРИЛЦАХ УТАС:</b> 88110542, 80110542</p>
+               
+                <div class="load-more">
+                  <a href="tel:88110542"> </i>Захиалах</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- home packages section ends -->
-
-    <!-- footer section starts  -->
-
-    <section class="footer">
-      <div class="box-container">
-        <div class="box">
-          <a class="item1"><img src="images/logo3.png" alt="" /></a>
-        </div>
-
-        <div class="box">
-          <h3>Холбоос</h3>
-          <a href="home.html"> <i class="fas fa-angle-right"></i> Нүүр</a>
-          <a href="about.html"> <i class="fas fa-angle-right"></i> Бидний тухай</a>
-          <a href="home.html#hutulbur"> <i class="fas fa-angle-right"></i> Хөтөлбөр</a>
-          <a href="about.html#gallerys"><i class="fas fa-angle-right"></i>Gallery</a>
-       </div>
-
-        <div class="box">
-          <h3>Холбоо барих</h3>
-          <a href="tel:88110542"> <i class="fas fa-phone"></i> +88110542 </a>
-          <a href="tel:80116774"> <i class="fas fa-phone"></i> +80110542 </a>
-          <a href="mailto:Huh-morit@gmail.com">
-            <i class="fas fa-envelope"></i> Huh-morit@gmail.com
-          </a>
-        </div>
-
-        <div class="box" id="item2">
-          <h3>Цахим хаягууд</h3>
-          <a href="https://www.facebook.com/khukhmorit">
-            <i class="fab fa-facebook-f"></i> facebook
-          </a>
-          <a href="#">
-            <i class="fab fa-instagram"></i> instagram
-          </a>
-          <a href="https://goo.gl/maps/Eq8RuxrRNBZhUYpa8">
-            <i class="fas fa-map"></i> Байршил
-          </a>
-        </div>
-      </div>
-
-      <div class="credit">
-         <span>Бүх эрх хуулиар хамгаалагдсан ©2023</span>
-      </div>
-    </section>
-
-    <!-- footer section ends -->
-
-    <!-- swiper js link  -->
-    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-
-    <!-- custom js file link  -->
-    <script src="js/script.js"></script>
-  </body>
+      </li> --> -->
+    </ul>
+  </div>
+    
+</body>
 </html>
+
+
