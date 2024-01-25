@@ -1,9 +1,4 @@
-// let menu = document.querySelector('menu-btn');
-// let navbar = document.querySelector('.header .navbar');
 
-// menu.onclik = () =>{
-//     menu.classList.toggle('fa-times');
-// }
 
 let menu = document.querySelector('#menu-btn');
 let navbar = document.querySelector('.header .navbar');
@@ -25,33 +20,37 @@ var swiper = new Swiper(".home-slider", {
      nextEl: ".swiper-button-next",
      prevEl: ".swiper-button-prev",
    },
+   paceBetween: 30,
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
    pagination: {
      el: ".swiper-pagination",
    },
    mousewheel: true,
    keyboard: true,
  });
+
+
  
+ 
+ let prevScrollPos = window.pageYOffset;
+ const header = document.getElementById("header");
 
-// const hiddenElements = document.querySelectorAll('.box');
-// hiddenElements.forEach((el)=>observer.observe(el));
+ window.onscroll = function () {
+   const currentScrollPos = window.pageYOffset;
 
-let loadMoreBtn = document.querySelector('.packages .load-more .btn');
-let currentItem = 3;
-
-loadMoreBtn.onclick = () =>{
-   let boxes = [...document.querySelectorAll('.packages .box-container .box')];
-   for (var i = currentItem; i < currentItem + 3; i++){
-      boxes[i].style.display = 'inline-block';
-   };
-   currentItem += 3;
-   if(currentItem >= boxes.length){
-      loadMoreBtn.style.display = 'none';
+   if (prevScrollPos > currentScrollPos) {
+     header.classList.remove("hide");
+   } else {
+     header.classList.add("hide");
    }
-}
-//  Image credits
-//  https://pixabay.com/vectors/boxing-ring-wrestling-wrestler-149840/
-//  https://pixabay.com/illustrations/retro-background-the-consignment-4237850/
-//  https://pixabay.com/illustrations/fractals-environment-chess-1728594/
-//  https://pixabay.com/photos/
+
+   prevScrollPos = currentScrollPos;
+ };
+
+
+
 
