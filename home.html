@@ -12,11 +12,166 @@
         <link rel="stylesheet" href="style.css">
         
 
+        <style>
+         article {
+  --img-scale: 1.001;
+  --title-color: black;
+  --link-icon-translate: -20px;
+  --link-icon-opacity: 0;
+  position: relative;
+  border-radius: 16px;
+  
+  
+  box-shadow: none;
+  background: #fff;
+  transform-origin: center;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+}
+
+article a::after {
+  position: absolute;
+  inset-block: 0;
+  inset-inline: 0;
+  cursor: pointer;
+  content: "";
+}
+
+/* basic article elements styling */
+article h2 {
+  margin: 0 0 18px 0;
+  font-family: wfont_59b760_9e277609a66d48e885abef24bfec5cfb,wf_9e277609a66d48e885abef24b,orig_manrope_medium;
+
+  font-size: 1.9rem;
+  letter-spacing: 0.06em;
+  color: var(--title-color);
+  transition: color 0.3s ease-out;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+article img {
+  max-width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transform: scale(var(--img-scale));
+  transition: transform 0.4s ease-in-out;
+}
+
+.article-body {
+  padding: 24px;
+}
+
+article a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #28666e;
+}
+
+article a:focus {
+  outline: 1px dotted #28666e;
+}
+
+article a .icon {
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+  transform: translateX(var(--link-icon-translate));
+  opacity: var(--link-icon-opacity);
+  transition: all 0.3s;
+}
+
+/* using the has() relational pseudo selector to update our custom properties */
+article:has(:hover, :focus) {
+  --img-scale: 1.1;
+  --title-color: #28666e;
+  --link-icon-translate: 0;
+  --link-icon-opacity: 1;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+
+/************************ 
+Generic layout (demo looks)
+**************************/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 48px 0;
+  font-family: "Figtree", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+
+  min-height: 100vh;
+}
+
+.articles {
+  display: grid;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+@media screen and (max-width: 960px) {
+  article {
+    container: card/inline-size;
+  }
+  .article-body p {
+    display: none;
+  }
+}
+
+@container card (min-width: 380px) {
+  .article-wrapper {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 16px;
+  }
+  .article-body {
+    padding-left: 0;
+  }
+  figure {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  figure img {
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+}
+
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
+}
+        </style>
     </head>
     <body>
     
         <!-- <img src="images/logo.jpg" alt="">  -->
-        <section class="header">
+        <section class="header" id="header">
          <a class="item1"><img src="images/logo3.1.png" alt=""></a>
             <nav class="navbar" id="navbar">
                 <a href="home.html">Нүүр</a>
@@ -34,7 +189,7 @@
 <section class="home">
    <div class="swiper home-slider">
       <div class="swiper-wrapper">
-         <div class="swiper-slide slide" style="background: url(images/home-slide.jpg) no-repeat">
+         <div class="swiper-slide slide" style="background: url(images/title1.jpg) no-repeat">
 
             <div class="content">
                <span>Монгол уламжлал, Морин аялал, Амралт</span>
@@ -100,8 +255,145 @@
 
 <section class="packages" id ="hutulbur">
    <div class="title"><h1 style="margin: 10px;">Хөтөлбөр</h1></div>
+   <section class="articles">
+      <article>
+        <div class="article-wrapper">
+          <figure>
+            <img src="images/juulchin.jpg" alt=""   style="
+              float: left;
+              margin: auto, 0, auto, auto;
+              height: auto;
+              width: 100%;
+            "/>
+          </figure>
+          <div class="article-body">
+            <h2>Жуулчин хөтөлбөр</h2>
+            <p>
+              Монгол үндэсний биет болон биет бус өв соёл, нүүдэлчин ахуй...
+            </p>
+            <a href="Juulchin.html" class="read-more">
+              Цааш <span class="sr-only">about this is some title</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article>
+         <div class="article-wrapper">
+           <figure>
+             <img src="images/jargaltaiAil.jpg" alt=""  style="
+             float: left;
+             margin: auto, 0, auto, auto;
+             height: auto;
+             width: 100%;
+           " />
+           </figure>
+           <div class="article-body">
+             <h2>Жаргалтай айл хөтөлбөр</h2>
+             <p> Гэр бүлийн эко амралт</p>
+             <a href="jargaltaiAil.html" class="read-more">
+               Цааш <span class="sr-only">about this is some title</span>
+               <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                 <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+               </svg>
+             </a>
+           </div>
+         </div>
+       </article>
+
+       <article>
+         <div class="article-wrapper">
+           <figure>
+             <img src="images/huuhed.jpg" alt="" />
+           </figure>
+           <div class="article-body">
+             <h2>Хүүхдийн хөтөлбөр</h2>
+             <p>
+              Монгол ахуйн боловсролын адуу болон адууны соёлоор дамжуулан түгээнэ.
+             </p>
+             <a href="Huuhdiin.html" class="read-more">
+               Цааш <span class="sr-only">about this is some title</span>
+               <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                 <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+               </svg>
+             </a>
+           </div>
+         </div>
+       </article>
+
+       <article>
+         <div class="article-wrapper">
+           <figure>
+             <img src="images/title1.jpg" alt="" />
+           </figure>
+           <div class="article-body">
+             <h2>Морин аялал</h2>
+             <p>
+              Байгалийн сайханд морь унах
+             </p>
+             <a href="morinAylal.html" class="read-more">
+               Цааш <span class="sr-only">about this is some title</span>
+               <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                 <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+               </svg>
+             </a>
+           </div>
+         </div>
+       </article>
+
+       <article>
+         <div class="article-wrapper">
+           <figure>
+             <img src="images/naadam2.jpg" alt="" />
+           </figure>
+           <div class="article-body">
+             <h2>Бэсрэг наадам</h2>
+             <p>
+              Албан байгууллага хамт олны эрийн 3 наадам зохион байгуулана.
+             </p>
+             <a href="besregNaadam.html" class="read-more">
+               Цааш <span class="sr-only">about this is some title</span>
+               <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                 <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+               </svg>
+             </a>
+           </div>
+         </div>
+       </article>
+
+       <article>
+         <div class="article-wrapper">
+           <figure>
+             <img src="images/img-6.1.jpg" alt=""  style="
+             float: left;
+             margin: auto, 0, auto, auto;
+             height: auto;
+             width: 100%;
+           " />
+           </figure>
+           <div class="article-body">
+             <h2>Захиалгат арга хэмжээ</h2>
+             <p>
+               
+             </p>
+             <a href="Zahialgat.html" class="read-more">
+               Цааш <span class="sr-only">about this is some title</span>
+               <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                 <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+               </svg>
+             </a>
+           </div>
+         </div>
+       </article>
+
+
+
+   </section>
  
-  <div class="box-container" >
+  <!-- <div class="box-container" >
 
      <div class="box">
         <div class="image">
@@ -184,7 +476,7 @@
      </div>
    </div>
 
-   <div class="load-more"><span class="btn">Цааш үзэх</span></div>
+   <div class="load-more"><span class="btn">Цааш үзэх</span></div> -->
 </section>
 
 <!-- <div class="container scroll-1">
@@ -362,14 +654,14 @@
          <a href="tel:88110542"> <i class="fas fa-phone"></i> +88110542 </a>
           <a href="tel:80116774"> <i class="fas fa-phone"></i> +80110542 </a>
           <a href="mailto:Huh-morit@gmail.com">
-            <i class="fas fa-envelope"></i> Huh-morit@gmail.com
+            <i class="fas fa-envelope"></i> Hmorit849@gmail.com
           </a>
       </div>
 
       <div class="box" id="item2">
          <h3>Цахим хаягууд</h3>
          <a href="https://www.facebook.com/khukhmorit"> <i class="fab fa-facebook-f"></i> facebook </a>
-         <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+         <a href="https://www.instagram.com/huhmorit/"> <i class="fab fa-instagram"></i> instagram </a>
          <a href="https://goo.gl/maps/Eq8RuxrRNBZhUYpa8"> <i class="fas fa-map"></i> Байршил </a>
         
       </div>
