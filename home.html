@@ -676,6 +676,502 @@ body {
         <script src="script.js"></script>
         
 //get user
+<script>
+    
+//get user
+var chatAppId = "20210";
+var channelId = "144";
+var chatName = "Дарцаг";
+var chatLogo = "https://beta.iva.mn";
+var chatBackgroundColor = "#ffffff";
+var chatTextColor = "#000000";
+var chatGreetingMessage = "Сайн байна уу  "Хөх морьт адуу морь уналгын төв"-н виртул ажилтан Дарцаг байна. Таньд юугаар туслах вэ?";
+
+// default
+var btnIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="41" height="24" viewBox="0 0 41 24" fill="none">
+<path d="M14.9043 12.431C15.7428 12.431 16.4225 11.7512 16.4225 10.9127C16.4225 10.0742 15.7428 9.39441 14.9043 9.39441C14.0657 9.39441 13.386 10.0742 13.386 10.9127C13.386 11.7512 14.0657 12.431 14.9043 12.431Z" fill="#000000"/>
+<path d="M25.0957 12.431C25.9342 12.431 26.614 11.7512 26.614 10.9127C26.614 10.0742 25.9342 9.39441 25.0957 9.39441C24.2571 9.39441 23.5774 10.0742 23.5774 10.9127C23.5774 11.7512 24.2571 12.431 25.0957 12.431Z" fill="#000000"/>
+<path d="M21.8427 13.0699C22.0322 13.0699 22.1903 13.2272 22.1312 13.4073C22.104 13.4904 22.0666 13.5719 22.0195 13.651C21.9096 13.8352 21.7486 14.0025 21.5457 14.1435C21.3427 14.2845 21.1017 14.3963 20.8366 14.4726C20.5714 14.5489 20.2871 14.5882 20.0001 14.5882C19.713 14.5882 19.4288 14.5489 19.1636 14.4726C18.8984 14.3963 18.6575 14.2845 18.4545 14.1435C18.2515 14.0025 18.0905 13.8352 17.9807 13.651C17.9335 13.5719 17.8962 13.4904 17.869 13.4073C17.8099 13.2272 17.968 13.0699 18.1575 13.0699H20.0001H21.8427Z" fill="#000000"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.125 4.74575H26.1274C30.2028 4.74575 33.5066 8.04954 33.5066 12.125C33.5066 16.0736 30.4051 19.2979 26.5053 19.4947L23.7501 22.2499H26.1274C31.7193 22.2499 36.2524 17.7168 36.2524 12.125C36.2524 6.5331 31.7193 2 26.1274 2H14.125C8.5331 2 4 6.5331 4 12.125C4 17.7168 8.5331 22.2499 14.125 22.2499H23.5V19.4969L14.125 19.5042C10.0495 19.5042 6.74575 16.2004 6.74575 12.125C6.74575 8.04954 10.0495 4.74575 14.125 4.74575Z" fill="#000000"/>
+</svg>`;
+
+// Create a new link element
+const link = document.createElement('link');
+link.rel = 'stylesheet';
+link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap';
+
+// Append the link element to the head
+document.head.appendChild(link);
+
+var floatingButtonColor = "background: #2060EB;";
+var isOpen = false;
+var responsiveType = false;
+var buttonInner = "";
+var logined = false;
+
+if (chatAppId == null) {
+  chatAppId = "chimege";
+}
+
+if (btnIcon == null) {
+  btnIcon = "https://app.iva.mn/storage/Symbol.svg";
+  buttonInner = `<input type="image" id="myimage" style="height:40px;width:40px;" src="${btnIcon}" />`;
+}
+
+if (chatBackgroundColor != null) {
+  floatingButtonColor = `background: ${chatBackgroundColor}`;
+}
+
+var chatBoxStyle = `
+  z-index:999; 
+  overflow:auto;
+  visibility:hidden;
+  font-size: 16px;
+  border-radius: 20px;
+  position: fixed;
+  bottom: 112px;
+  right: 40px;
+  box-shadow: 0px 16px 32px 0px rgba(29, 33, 45, 0.10), 0px 1px 4px 0px rgba(29, 33, 45, 0.15), 0px 0px 1px 0px rgba(29, 33, 45, 0.20);
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+  transform: scale(0.3);
+  transform-origin: bottom right;
+  width: 375px;
+  height: 664px;
+  `;
+
+var chatBtnStyle = `
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  border-radius: 100px;
+  font-size: 40px;
+  box-shadow: 0px 2px 4px 0px rgba(29, 33, 45, 0.08), 0px 0px 2px 0px rgba(29, 33, 45, 0.08), 0px 0px 1px 0px rgba(29, 33, 45, 0.20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  border: none;
+  cursor: pointer;
+  background-color: ${chatBackgroundColor};
+  transition: transform 0.2s;
+  padding: 1px 6px;
+`;
+
+var full_screen_style = `
+  z-index: 1999; 
+  font-size: 16px; 
+  border-radius: 20px; 
+  position: fixed; 
+  width: 100%; 
+  height: 100%; 
+  top: 0;
+`;
+
+setCookie("app_name", chatAppId);
+
+function setCookie(name, value) {
+  var expires = "";
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+window.onload = function () {
+  if (document.body != null) {
+    const chatbotElement = document.createElement("div");
+    chatbotElement.className = "egune-chat";
+    chatbotElement.style.zIndex = "9999";
+    chatbotElement.style.position = "fixed";
+
+    const chatBoxElement = document.createElement("div");
+    chatBoxElement.className = "egune-chat-box";
+    chatbotElement.appendChild(chatBoxElement);
+
+    if (shouldShowGreetingBox()) {
+      let greetingBox = greetingBoxCreater()
+      chatbotElement.appendChild(greetingBox);
+      
+      setTimeout(() => {
+        chatbotElement.removeChild(greetingBox);
+        localStorage.setItem('lastGreetingTime', Date.now());
+      }, 20000);
+    }
+
+    const buttonElement = document.createElement("button");
+    buttonElement.className = "floating-btn";
+    buttonElement.addEventListener("click", buttonClick);
+    buttonElement.addEventListener("mouseover", mouseOver);
+    buttonElement.addEventListener("mouseleave", mouseLeave);
+    chatbotElement.appendChild(buttonElement);
+
+    document.body.appendChild(chatbotElement);
+  } else {
+    const rootElement = document.documentElement;
+    const firstTier = rootElement.childNodes;
+    firstTier[1].innerHTML =
+      firstTier[0].innerHTML +
+      `<div class="egune-chat" style="z-index: 999;position:fixed !important"><div class="egune-chat-box"></div><button class="floating-btn" onclick="buttonClick()">${buttonInner}</button></div>`;
+  }
+
+  const floatingBtn = document.getElementsByClassName("floating-btn")[0];
+  floatingBtn.innerHTML = btnIcon;
+  floatingBtn.style = floatingButtonColor + chatBtnStyle;
+  initChat();
+};
+
+function shouldShowGreetingBox() {
+  const lastGreetingTime = localStorage.getItem('lastGreetingTime');
+  if (!lastGreetingTime) {
+      return true;
+  }
+
+  const twelveHoursInMilliseconds = 12 * 60 * 60 * 1000;
+  const currentTime = Date.now();
+
+  return currentTime - lastGreetingTime > twelveHoursInMilliseconds;
+}
+
+function greetingBoxCreater() {
+  // Create main container
+  const greetingBox = document.createElement('div');
+  greetingBox.className = 'egune-greeting-box';
+
+  // Create header container
+  const header = document.createElement('div');
+  header.className = 'header';
+
+  // Create image element
+  const img = document.createElement('img');
+  img.width = '20';
+  img.height = '20';
+  img.src = 'https://static.xx.fbcdn.net/images/emoji.php/v9/t99/2/16/1f44b.png';
+  img.alt = 'waving hand svg icon';
+
+  // const img = document.createElement('span');
+  // img.className = 'bad';
+  // img.textContent = 'hand';
+
+  // Create title span
+  const title = document.createElement('span');
+  title.className = 'egune-greeting-title';
+  title.textContent = 'Сайн байна уу.';
+
+  // Create close button
+  const closeButton = document.createElement('button');
+  closeButton.className = 'close-button';
+  closeButton.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M3.52925 3.52851C3.7896 3.26816 4.21171 3.26816 4.47206 3.52851L8.00065 7.05711L11.5292 3.52851C11.7896 3.26816 12.2117 3.26816 12.4721 3.52851C12.7324 3.78886 12.7324 4.21097 12.4721 4.47132L8.94346 7.99992L12.4721 11.5285C12.7324 11.7889 12.7324 12.211 12.4721 12.4713C12.2117 12.7317 11.7896 12.7317 11.5292 12.4713L8.00065 8.94273L4.47206 12.4713C4.21171 12.7317 3.7896 12.7317 3.52925 12.4713C3.2689 12.211 3.2689 11.7889 3.52925 11.5285L7.05784 7.99992L3.52925 4.47132C3.2689 4.21097 3.2689 3.78886 3.52925 3.52851Z" fill="#4C505D"/>
+    </svg>
+  `;
+
+  // Add event listener for close button
+  closeButton.addEventListener('click', () => {
+    greetingBox.style.display = 'none';
+    localStorage.setItem('lastGreetingTime', Date.now());
+  });
+
+  // Create description span
+  const description = document.createElement('span');
+  description.className = 'egune-greeting-desc';
+  description.textContent = 'Танд юугаар туслах вэ?';
+
+  // Append elements to header
+  header.appendChild(img);
+  header.appendChild(title);
+  header.appendChild(closeButton);
+
+  // Append header and description to main container
+  greetingBox.appendChild(header);
+  greetingBox.appendChild(description);
+
+  // CSS styles
+  const style = document.createElement('style');
+  style.textContent = `
+    .egune-greeting-box {
+      background-color: white;
+      border-radius: 12px;
+      width: 100%;
+      max-width:230px;
+      height: 100%;
+      max-height: 90px;
+      padding: 10px 6px 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: fixed;
+      right: 40px;
+      bottom: 108px;
+      box-sizing:border-box;
+      box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.16);
+    }
+    .egune-greeting-box .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .egune-greeting-box .header .close-button {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    .egune-greeting-title {
+      color: #353841;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 24px;
+      letter-spacing: -0.09px;
+    }
+    .egune-greeting-desc {
+      color: #22242A;
+      font-family: Inter;
+      font-size: 14px;
+      line-height: 24px;
+      letter-spacing: -0.09px;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Append main container to body
+  return greetingBox
+}
+
+function initChat() {
+  let chatBoxEl = document.getElementsByClassName("egune-chat-box")[0];
+  chatBoxEl.innerHTML = `
+    <iframe id='chimegeChatBotId' scrolling="no" src="https://webchat.iva.mn" 
+    style="border: none; margin: 0; padding: 0;display: flex; 
+    width: 100%; height: 100%;object-fit: cover; flex-direction: column;"></iframe>`;
+
+  chatBoxEl.style = chatBoxStyle + `transform: scale(0);`;
+  if (window.matchMedia("(max-width: 430px)").matches) {
+    responsiveType = "full_screen";
+  } else if (
+    window.matchMedia("(max-height: 832px)").matches ||
+    window.matchMedia("(max-width: 774px)").matches
+  ) {
+    responsiveType = "small";
+  } else {
+    responsiveType = "large";
+  }
+  responsive();
+}
+
+function responsive() {
+  let chatBoxEl = document.getElementsByClassName("egune-chat-box")[0];
+
+  window.addEventListener("resize", () => {
+    var responsiveStyle = "";
+    var login_height_style = "";
+    if (!logined) {
+      login_height_style = "height: 490px !important;";
+    }
+
+    if (window.matchMedia("(max-width: 430px)").matches) {
+      responsiveStyle = full_screen_style;
+      responsiveType = "full_screen";
+    } else if (
+      window.matchMedia("(max-height: 832px)").matches ||
+      window.matchMedia("(max-width: 774px)").matches
+    ) {
+      responsiveStyle =
+        chatBoxStyle +
+        `width:360px !important; height:600px !important;` +
+        login_height_style;
+      responsiveType = "small";
+    } else {
+      responsiveStyle = chatBoxStyle + login_height_style;
+      responsiveType = "large";
+    }
+
+    if (isOpen) {
+      chatBoxEl.style =
+        responsiveStyle + `opacity:1; visibility:visible; transform: scale(1);`;
+    } else {
+      chatBoxEl.style = responsiveStyle + `opacity:0; visibility:hidden;`;
+    }
+  });
+}
+
+function buttonClick() {
+  let login_height_style = "";
+  if (!logined) {
+    login_height_style = "height: 490px !important;";
+  }
+  document.getElementsByClassName("floating-btn")[0].style.transform =
+    "scale(1.0)";
+  setTimeout(() => {
+    document.getElementsByClassName("floating-btn")[0].style.transform =
+      "scale(1.1)";
+  }, 150);
+
+  let chatBoxEl = document.getElementsByClassName("egune-chat-box")[0];
+
+  if (isOpen) {
+    if (responsiveType == "full_screen") {
+      chatBoxEl.style =
+        full_screen_style +
+        `opacity:0; transition: all 0.3s ease-in-out; transform: scale(0.3); transform-origin: bottom right; visibility:hidden;`;
+    } else if (responsiveType == "small") {
+      chatBoxEl.style =
+        chatBoxStyle +
+        `width:360px !important; height:600px !important; opacity:0; transform: scale(0.3); visibility: hidden;`;
+    } else {
+      chatBoxEl.style =
+        chatBoxStyle + `opacity: 0; transform: scale(0.3); visibility:hidden;`;
+    }
+    isOpen = false;
+  } else {
+    if (responsiveType == "full_screen") {
+      chatBoxEl.style =
+        full_screen_style +
+        `opacity:1; transition: all 0.3s ease-in-out; transform: scale(1); transform-origin: bottom right;visibility:visible`;
+    } else if (responsiveType == "small") {
+      chatBoxEl.style =
+        chatBoxStyle +
+        `width:360px !important; height:600px !important; opacity:1; transform: scale(1); visibility:visible;` +
+        login_height_style;
+    } else {
+      chatBoxEl.style =
+        chatBoxStyle +
+        `opacity: 1; transform: scale(1); visibility:visible;` +
+        login_height_style;
+    }
+    isOpen = true;
+  }
+}
+
+function mouseOver() {
+  document.getElementsByClassName("floating-btn")[0].style.transform =
+    "scale(1.1)";
+}
+
+function mouseLeave() {
+  document.getElementsByClassName("floating-btn")[0].style.transform =
+    "scale(1)";
+}
+
+function login_type() {
+  let chatBoxEl = document.getElementsByClassName("egune-chat-box")[0];
+  var responsiveStyle = "";
+  var login_height_style = "";
+
+  if (logined) {
+    if (responsiveType == "small") {
+      login_height_style = "height:600px !important;";
+    } else if (responsiveType == "large") {
+      login_height_style = "height:664px !important;";
+    }
+  } else {
+    login_height_style = "height:490px !important;";
+    localStorage.removeItem("messages");
+  }
+
+  if (responsiveType == "full_screen") {
+    responsiveStyle = full_screen_style;
+  } else if (responsiveType == "small") {
+    responsiveStyle =
+      chatBoxStyle + `width:360px !important;` + login_height_style;
+  } else {
+    responsiveStyle = chatBoxStyle + login_height_style;
+  }
+
+  if (isOpen) {
+    chatBoxEl.style =
+      responsiveStyle + `opacity:1; visibility:visible; transform: scale(1);`;
+  } else {
+    chatBoxEl.style = responsiveStyle + `opacity:0; visibility:hidden;`;
+  }
+}
+
+window.addEventListener("message", handleMessage, false);
+
+function handleMessage(event) {
+  if (event.origin != "https://webchat.iva.mn") {
+    return;
+  }
+
+  if (event.data == "close_iframe") {
+    buttonClick();
+  } else if (event.data == "loadiFrame") {
+    checklocalStorage();
+  } else if (event.data.type == "logined") {
+    logined = event.data.value;
+    login_type();
+  } else if (event.data.type == "messages") {
+    localStorage.setItem("messages", JSON.stringify(event.data.value));
+  }
+}
+
+function checklocalStorage() {
+  const dateTime = new Date();
+
+  const currentTime = Date.now();
+  var localStorageClear = false;
+  var realHour = dateTime.getHours();
+  var realMinutes = dateTime.getMinutes();
+  var chatMessages = JSON.parse(localStorage.getItem("messages"));
+
+  var companyVariables = {
+    appId: chatAppId,
+    channelId: channelId,
+    name: chatName,
+    logo: chatLogo,
+    backgroundColor: chatBackgroundColor,
+    textColor: chatTextColor,
+    greetingMessage: chatGreetingMessage,
+    localMessage: "",
+  };
+
+  if (chatMessages && chatMessages.length > 0) {
+    var lastMessage = chatMessages[chatMessages.length - 1];
+    var lastMessageTime = new Date(lastMessage.timestamp).getTime(); 
+
+        var hoursSinceLastMessage = (currentTime - lastMessageTime) / (1000 * 60 * 60); 
+
+        if (hoursSinceLastMessage > 3) {
+            localStorageClear = true;
+        } else {
+            localStorageClear = false;
+        }
+
+    if (localStorageClear) {
+      localStorage.removeItem("messages");
+      document.getElementById("chimegeChatBotId").contentWindow.postMessage(
+        {
+          type: "login",
+          variables: companyVariables,
+        },
+        "*"
+      );
+    } else {
+      logined = true;
+      companyVariables.localMessage = chatMessages;
+      document.getElementById("chimegeChatBotId").contentWindow.postMessage(
+        {
+          type: "start_chat",
+          variables: companyVariables,
+        },
+        "*"
+      );
+    }
+  } else {
+    document.getElementById("chimegeChatBotId").contentWindow.postMessage(
+      {
+        type: "login",
+        variables: companyVariables,
+      },
+      "*"
+    );
+  }
+}
+
+</script>
 
     </body>
 </html>
